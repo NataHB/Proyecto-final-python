@@ -71,12 +71,24 @@ class ProductoUpdateView(LoginRequiredMixin, UpdateView):
 # COMENTARIOS
 class ComentariosCreateView(LoginRequiredMixin, CreateView):
     model = Comentario
-    fields = ['nombre', 'comentario', 'mensaje']
+    fields = [ 'producto', 'mensaje']
     template_name = 'mi_app/comentario.html'
 
     def form_valid(self, form):
         form.instance.pasteleria_id = self.kwargs['pk']  # Vincula el comentario con la pasteleria/producto
+        form.instance.nombre = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('index')
+    
+class ComentariosDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comentario
+    template_name = 'mi_app/comentario_confirm_delete.html'
+    success_url = reverse_lazy('index')
+
+class ComentariosUpdateView(LoginRequiredMixin, UpdateView):
+    model = Comentario
+    fields = [ 'producto', 'mensaje']
+    template_name = 'mi_app/comentario_update.html'
+    success_url = reverse_lazy('index')

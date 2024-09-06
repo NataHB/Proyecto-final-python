@@ -21,5 +21,8 @@ urlpatterns = [
     path ('productoNuevo/create/', views.ProductoCreateView.as_view(), name='productoNuevo'),
 
     path('pasteleria/<int:pk>/comentario/nuevo/', views.ComentariosCreateView.as_view(), name='nuevo_comentario'),
+    path('comentarios/<int:pk>/delete/', views.ComentariosDeleteView.as_view(), name='delete_comentario'),
+    path('comentarios/<int:pk>/update/', views.ComentariosUpdateView.as_view(), name='update_comentario'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

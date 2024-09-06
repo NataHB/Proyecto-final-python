@@ -42,8 +42,12 @@
                                 <p>No hay comentarios</p>
                             {% endif %}
                             {% for comentario in comentarios %}
-                                <li><strong>{{ comentario.nombre }}</strong> </li>
+                                <li><strong>{{ comentario.nombre.username }}</strong> </li>
                                 <p>{{ comentario.mensaje }}</p>
+                                {% if comentario.nombre == request.user %}
+                                <a href="{% url 'update_comentario' comentario.id %}" class="btn btn-secondary">Editar</a>
+                                <a href="{% url 'delete_comentario' comentario.id %}" class="btn btn-secondary">Borrar</a>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                         

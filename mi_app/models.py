@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Producto(models.Model):
@@ -19,10 +20,10 @@ class Producto(models.Model):
         return ( f'{self.nombre}' ) 
 
 class Comentario(models.Model):
-    comentario = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='comentarios')
-    nombre = models.CharField(max_length=40)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='comentarios')
+    nombre = models.ForeignKey(User, on_delete=models.CASCADE )
     mensaje = models.TextField(null=True, blank=True)
     fecha = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return ( f'{self.nombre} - {self.comentario}' )
+        return ( f'{self.nombre} - {self.producto}' )
