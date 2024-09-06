@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bebidas_confirm_delete</title>
+</head>
+    <body>
+        {% extends 'mi_app/index.html' %}
+        {% load static %}
+        {% block content %}
+        <div class="d-flex justify-content-center p-5" style="color: #fffff0;">
+            <form method="POST">
+                {% csrf_token %}
+                Estas seguro/a de que quieres borrar {{ object }}
+                <button type="submit" class="btn btn-primary">Borrar</button>
+            </form>
+        </div>
+        {% endblock %}
+    </body>
+</html>

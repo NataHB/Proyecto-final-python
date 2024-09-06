@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Tu tienda de cafe</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'mi_app/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                <span class="site-heading-upper text-primary mb-3">Bienvenidos a</span>
+                <span class="site-heading-lower">TU TIENDA DE CAFE</span>
+            </h1>
+        </header>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">TU TIENDA DE CAFE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'index' %}">Inicio</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">Nosotros</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{%url 'pasteleria' %}">Pasteleria</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'bebidas' %}">Bebidas</a></li>
+                        {% if user.is_superuser %}
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'admin:index' %}">Admin</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'productoNuevo' %}">Crear Producto</a></li>
+                        {% endif %}
+                        {# DROPDOWN PARA LA CUENTA DE USUARIO #}
+
+                        {% if request.user.is_authenticated %}
+                            <img src="{{ request.user.imagen.imagen.url}}" alt="Profile" style="height: 50px;width: 50px; border-radius: 50%;">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ request.user.username }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'editarPerfil' %}">Editar cuenta</a></li>
+                                    <il><a class="dropdown-item" href="{% url 'perfil' %}">Ver mi perfil</a></il>
+                                    <li class="dropdown-item">
+                                        <form method="post" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-secondary" type="submit">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        
+                        {% else %}
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cuenta
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Crear cuenta</a></li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content %}
+        <section class="page-section clearfix">
+            <div class="container">
+                <div class="intro">
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="../../static/mi_app/assets/img/intro.jpg" alt="..." />
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">CAFE DE CALIDAD</span>
+                            <span class="section-heading-lower">COMO TE GUSTA</span>
+                        </h2>
+                        <p class="mb-3">Cada taza de nuestro café artesanal de calidad comienza con ingredientes seleccionados a mano y de origen local. Una vez que lo pruebes, nuestro café será una maravillosa adición a tu rutina matutina diaria. ¡Te lo garantizamos!
+                        </p>
+                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url 'pasteleria' %}">Inicia sesion para ver el catalogo!</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section cta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="cta-inner bg-faded text-center rounded">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-upper">Nuestra promesa</span>
+                                <span class="section-heading-lower">Con vos</span>
+                            </h2>
+                            <p class="mb-0">Cuando ingresa a nuestra tienda para comenzar el día, estamos dedicados a brindarle un servicio amable, un ambiente acogedor y, sobre todo, excelentes productos elaborados con ingredientes de la más alta calidad. Si no está satisfecho, háganoslo saber y haremos todo lo posible para arreglar las cosas!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+        <footer class="footer text-faded text-center py-5">
+            <div class="container"><p class="m-0 small">Copyright &copy; Nataly Holmann 2024</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

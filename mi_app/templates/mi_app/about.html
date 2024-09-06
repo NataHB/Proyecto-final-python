@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about</title>
+</head>
+    <body>
+        {% extends 'mi_app/index.html' %}
+        {% load static %}
+        {% block content %}
+        <section class="page-section about-heading">
+            <div class="container">
+                <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="../../static/mi_app/assets/img/about.jpg" alt="..." />
+                <div class="about-heading-content">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-10 mx-auto">
+                            <div class="bg-faded rounded p-5">
+                                <h2 class="section-heading mb-4">
+                                    <span class="section-heading-upper">PROYECTO FINAL - TIENDA DE CAFE</span>
+                                    <span class="section-heading-lower">Sobre Mi</span>
+                                </h2>
+                                <p>Mi nombre es Nataly Hollmann, soy una dedicada estudiante de programacion, comencé este año con un curso de desarrollo web y actualmente estoy haciendo dos diplomaturas y finalizando este curso de python. Esta página es una demostración de mi trabajo y todo el conocimiento que he adquirido.
+                                Su objetivo es poder mostrar un catalogo de productos, para poder darle una mejor experiencia de usuario.
+                                </p>
+                                <p class="mb-0">
+                                    La idea de mi proyecto es poder
+                                    garantizar que te encontraras
+                                    <em>encantado</em>
+                                    con las mezclas que encontraras desde el momento en que entras hasta que salgas.
+                                </p>
+                                <br>
+                                <a class="btn btn-secondary" target="_blank" href ="https://github.com/NataHB">GitHub</a>
+                                <a class="btn btn-secondary" target="_blank" href="https://www.linkedin.com/in/nataly-hollmann-1a7975307/">Linkedin</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+    </body>
+</html>

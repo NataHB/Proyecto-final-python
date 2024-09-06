@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logout</title>
+</head>
+<body>
+    {% extends 'mi_app/index.html' %}
+    {% load static %}
+    {% block content %}
+        <div class="container text-center" style="color: #fffff0;">
+            <h1>Has salido de la sesión</h1>
+        </div>
+        
+        <div class="container text-center" style="color: #fffff0;">
+            <p>Quieres <a href="{% url 'Login' %}">iniciar sesión </a>de nuevo?</p>
+        </div>
+    {% endblock %}
+</body>
+</html>

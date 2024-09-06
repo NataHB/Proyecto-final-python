@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>editarUsuario</title>
+</head>
+<body>
+    {% extends 'mi_app/index.html' %}
+    {% block content %}
+        
+        <div class="d-flex-column justify-content-center p-5" style="color: #fffff0;">
+            <h1>Editar</h1>
+                <form action="" method="POST" enctype="multipart/form-data" style="color: #fffff0;">
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <a class="btn btn-primary" href="{% url 'editarPassword' %}">Editar contraseña</a>
+                    <input class="btn btn-primary" type="submit" value="Editar">
+                </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
